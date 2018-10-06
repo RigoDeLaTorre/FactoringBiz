@@ -18,20 +18,15 @@ export default class Upload extends Component {
     equipmentType:'',
     loadLength:'',
     isPayed:false
-
     }
-
   }
 
   componentWillMount() {
     this.initialState = this.state
 }
 
-
 handleSubmit = (e) =>{
-   e.preventDefault();
   console.log('testing submit')
-
   let load = {
     upload1:this.state.upload1,
     upload1:this.state.upload1,
@@ -47,20 +42,27 @@ handleSubmit = (e) =>{
     loadLength:this.state.loadLength,
     isPayed:this.state.isPayed
   }
-  this.props.handleLoads(load)
-this.setState(this.initialState)
+
+  //If user confirms to add the load, it will also reset the state of the form to the inital.
+  if (confirm("Click Ok to Add the Load")) {
+    this.props.handleLoads(load)
+  this.setState(this.initialState)
+  } else {
+    return false;
+  }
 }
 
+//updates the form state
 handleChange = (e)=>{
-if(e.target.type=='checkbox'){
-  this.setState({
-    [e.target.name]: e.target.checked
-  })
-}else{
-  this.setState({
-    [e.target.name]: e.target.value
-  })
-}
+    if(e.target.type=='checkbox'){
+      this.setState({
+        [e.target.name]: e.target.checked
+      })
+    }else{
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
 }
 
   render () {
@@ -74,8 +76,9 @@ if(e.target.type=='checkbox'){
                   <label htmlFor="upload1" className="custom-file-upload"> Upload a file {this.state.upload1}</label>
                   <input id="upload1" type="file" name="upload1" value ={this.state.myFile1} onChange ={this.handleChange}/>
                 </div>
-                <div className="group">
+                <div className="group group-select">
                     <select name="upload1Category" value ={this.state.upload1Category} onChange ={this.handleChange}>
+                      <option value="choose">Please Choose</option>
                       <option value="bol">Bill of Lading</option>
                       <option value="rateConfirmation">Rate Confirmation</option>
                       <option value="invoice">Invoice</option>
@@ -87,8 +90,9 @@ if(e.target.type=='checkbox'){
                 <label htmlFor="upload2" className="custom-file-upload"> Upload a file {this.state.upload2}</label>
                 <input id="upload2" type="file" name="upload2" value ={this.state.upload2} onChange ={this.handleChange}/>
               </div>
-              <div className="group">
+              <div className="group  group-select">
                   <select name="upload2Category" value ={this.state.upload2Category} onChange ={this.handleChange}>
+                    <option value="choose">Please Choose</option>
                     <option value="bol">Bill of Lading</option>
                     <option value="rateConfirmation">Rate Confirmation</option>
                     <option value="invoice">Invoice</option>
@@ -109,7 +113,7 @@ if(e.target.type=='checkbox'){
                     <input type="text" placeholder="Company Address" name="billToAddress" value ={this.state.billToAddress} onChange ={this.handleChange} />
                 </div>
                 <div className="details-button">
-                  <button type="button" onClick={this.handleSubmit}>Details</button>
+                  <button type="button">Details</button>
               </div>
 
               </div>
@@ -129,15 +133,17 @@ if(e.target.type=='checkbox'){
               </div>
 
                 <div className="group equipment">
-                  <div className="group">
+                  <div className="group group-select-equipment">
                       <label htmlFor="equipmentType">Equipment Type</label>
                       <select name="equipmentType" value ={this.state.equipmentType} onChange ={this.handleChange}>
+                        <option value="Choose">Please Choose</option>
                         <option value="dryVan">Dry Van</option>
                         <option value="flatBed">Flat Bed</option>
+                        <option value="refeer">Reefer</option>
                       </select>
                   </div>
                   <div className="group">
-                    <label htmlFor="loadLength">Load Length *</label>
+                    <label htmlFor="loadLength" className="loadlength">Load Length *</label>
                     <input type="text" placeholder="Ft 00" name="loadLength" value ={this.state.loadLength} onChange ={this.handleChange} />
                 </div>
               </div>
@@ -161,9 +167,13 @@ if(e.target.type=='checkbox'){
                   <h6>TOTAL TO BE PAID</h6>
               </div>
             </div>
+                <h6 style ={{color:'red', fontSize:'.7rem'}}>*Required Field</h6>
           </section>
-            </form>
-            </div>
-      </section>)
+          <div className="add-load" onClick={this.handleSubmit}>
+           <img src="./img/plus.svg"/>
+          </div>
+        </form>
+      </div>
+    </section>)
   }
 }

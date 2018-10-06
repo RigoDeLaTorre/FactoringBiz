@@ -1,11 +1,12 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Link} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-const Load =({load})=> {
+const LoadItem =({load, selectedLoad})=> {
 
     return (
-     <li className ="load-item">
+        // This passes the current load to the index.js container where it sets the state of the selected load when a user clicks on the NavLink below due to event bubbling.
+     <li className ="load-item" onClick={() =>selectedLoad(load)}>
       <div className="load-list">
        <h1>{load.billTo}</h1>
        <h2>$ {load.invoiceAmount}</h2>
@@ -13,7 +14,7 @@ const Load =({load})=> {
           <p>{load.firstPickup}</p>
           <p>{load.finalDestination}</p>
        </div>
-       <a href="#">Details</a>
+         <NavLink to="/details" activeClassName="selected">Details</NavLink>
       </div>
       <div className="pay-info">
         <h2>Paid</h2>
@@ -23,4 +24,4 @@ const Load =({load})=> {
     </li>
     )
 }
-export default Load
+export default LoadItem

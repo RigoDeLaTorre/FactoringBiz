@@ -1,0 +1,136 @@
+#upload {
+  max-width: 1600px;
+  margin: 0 auto;
+
+  .upload-container {
+    form {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      border: none;
+
+      .invoice-section {
+        h2 {
+          font-size: 0.8rem;
+          font-weight: 300;
+          margin-bottom: 2rem;
+          letter-spacing: 0.5px;
+        }
+      }
+
+      .group-container {
+        background: white;
+        flex-basis: 35%;
+        margin-right: 5rem;
+        padding: 30px 50px;
+        -webkit-box-shadow: 3px 2px 32px -8px rgba(0,0,0,0.75);
+        -moz-box-shadow: 3px 2px 32px -8px rgba(0,0,0,0.75);
+        box-shadow: 3px 2px 32px -8px rgba(0,0,0,0.75);
+
+        .file-upload {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          align-content: center;
+
+          input[type="file"] {
+            display: none;
+          }
+
+          .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+          }
+        }
+
+        .invoice-details {
+          margin-top: 4rem;
+        }
+
+        .upload-files {}
+
+        .group {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 1.7rem;
+
+          .loadlength {
+            padding-bottom: 20px;
+          }
+
+          &.group-select {
+            border-bottom: 2px solid #dbdbdb;
+            margin-left: 1rem;
+          }
+
+          &.group-select-equipment {
+            border-bottom: 2px solid #dbdbdb;
+            margin-right: 1rem;
+            width: 100%;
+          }
+
+          select {
+            margin: 9px 0;
+            font-size: 0.8rem;
+            border: none;
+
+            option {
+              font-size: 0.8rem;
+              margin-bottom: 1rem;
+            }
+          }
+
+          &.upload-group {
+            width: 100%;
+            border-bottom: 2px solid #dbdbdb;
+          }
+        }
+
+        .equipment {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          select {
+            border: none;
+          }
+        }
+
+        .load-info {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          align-content: center;
+
+          h5 {
+            font-weight: 500;
+
+            span {
+              color: red;
+            }
+          }
+
+          h6 {
+            font-size: 0.7rem;
+          }
+        }
+
+        .details-button {
+          button {
+            background: #e28449;
+            color: white;
+            font-size: 0.8rem;
+            border: none;
+            padding: 10px 15px;
+            letter-spacing: 1px;
+          }
+        }
+
+        &.load-details {}
+      }
+    }
+  }
+}
